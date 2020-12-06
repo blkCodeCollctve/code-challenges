@@ -1,4 +1,4 @@
-#Challenge - Due 12/5/20
+# Challenge - Due 12/5/20
 
 ## Description
 Is a number a prime?
