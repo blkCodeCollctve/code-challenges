@@ -1,14 +1,16 @@
 # Challenge
-In this Kata, you will be given an array of numbers in which two numbers occur once and the rest occur only twice. Your task will be to return the sum of the numbers that occur only once.
+Complete the function that determines if a given non-negative integer is a power of two. From the corresponding Wikipedia entry:
 
-For example, repeats([4,5,7,5,4,8]) = 15 because only the numbers 7 and 8 occur once, and their sum is 15. Every other number occurs twice.
+```a power of two is a number of the form 2^n where n is an integer, i.e. the result of exponentiation with number two as the base and integer n as the exponent.```
+
+You may assume the input is always valid.
 
 # Test Cases
 ```javascript
-Test.it("Basic tests")
-Test.assert_equals(repeats([4,5,7,5,4,8]),15)
-Test.assert_equals(repeats([9, 10, 19, 13, 19, 13]),19)
-Test.assert_equals(repeats([16, 0, 11, 4, 8, 16, 0, 11]),12)
-Test.assert_equals(repeats([5, 17, 18, 11, 13, 18, 11, 13]),22)
-Test.assert_equals(repeats([5, 10, 19, 13, 10, 13]),24)
+test.assert_equals(power_of_two(0), False)
+test.assert_equals(power_of_two(1), True)
+test.assert_equals(power_of_two(2), True)
+test.assert_equals(power_of_two(5), False)
+test.assert_equals(power_of_two(6), False)
+test.assert_equals(power_of_two(4096), True)
 ```
