@@ -1,0 +1,51 @@
+*Background:*
+You're working in a number zoo, and it seems that one of the numbers has gone missing!
+
+Zoo workers have no idea what number is missing, and are too incompetent to figure it out, so they're hiring you to do it for them.
+
+In case the zoo loses another number, they want your program to work regardless of how many numbers there are in total.
+
+*Task:*
+Write a function that takes a shuffled list of unique numbers from 1 to n with one element missing (which can be any number including n). Return this missing number.
+
+Note: huge lists will be tested.
+
+*Examples:*
+[1, 3, 4]  =>  2
+[1, 2, 3]  =>  4
+[4, 2, 3]  =>  1
+
+*Test Cases:*
+class FindNumberTest extends TestCase {
+  public function testDescriptionExamples() {
+    $this->assertSame(2, find_number([1, 3]));
+    $this->assertSame(1, find_number([2, 3, 4]));
+    $this->assertSame(12, find_number([13, 11, 10, 3, 2, 1, 4, 5, 6, 9, 7, 8]));
+  }
+  public function testFixed() {
+    $this->assertSame(2, find_number([1, 3, 4, 5, 6, 7, 8]));
+    $this->assertSame(3, find_number([7, 8, 1, 2, 4, 5, 6]));
+    $this->assertSame(4, find_number([1, 2, 3, 5]));
+  }
+  public function testEdge() {
+    $this->assertSame(1, find_number([]));
+    $this->assertSame(13, find_number(range(1, 12)));
+    $this->assertSame(2, find_number([1]));
+    $this->assertSame(1, find_number([2]));
+  }
+  protected function solution(array $a): int {
+    return array_sum(range(1, count($a) + 1)) - array_sum($a);
+  }
+  protected function randomize(array $a): array {
+    for ($i = 0; $i < 2 * count($a); $i++) list($a[$j], $a[$k]) = [$a[$k = array_rand($a)], $a[$j = array_rand($a)]];
+    return $a;
+  }
+  protected function randomArray(): array {
+    $result = range(1, random_int(100, 1e3));
+    unset($result[array_rand($result)]);
+    return $this->randomize($result);
+  }
+  public function testRandom() {
+    foreach (range(1, 1.3e3) as $_) $this->assertSame($this->solution($a = $this->randomArray()), find_number($a));
+  }
+}
